@@ -8,40 +8,40 @@
 #include "fsm_manual.h"
 
 void fsm_manual_run(){
-	switch (status){
+	switch (status1){
 	case MAN_RED:
-		setRed();
+		setRed_1();
 		if (timer1_flag == 1){
-			status = AUTO_RED;
+			status1 = AUTO_RED_1;
 			setTimer1(5000);
 		}
 
-		if (isButton1Pressed() == 1){
-			status = MAN_GREEN;
+		if (isButton0Pressed() == 1){
+			status1 = MAN_GREEN;
 			setTimer1(10000);
 		}
 		break;
 	case MAN_GREEN:
-		setGreen();
+		setGreen_1();
 		if (timer1_flag == 1){
-			status = AUTO_GREEN;
+			status1 = AUTO_GREEN_1;
 			setTimer1(5000);
 		}
 
-		if (isButton1Pressed() == 1){
-			status = MAN_YELLOW;
+		if (isButton0Pressed() == 1){
+			status1 = MAN_YELLOW;
 			setTimer1(10000);
 		}
 		break;
 	case MAN_YELLOW:
-		setYellow();
+		setYellow_1();
 		if (timer1_flag == 1){
-			status = AUTO_YELLOW;
+			status1 = AUTO_YELLOW_1;
 			setTimer1(5000);
 		}
 
-		if (isButton1Pressed() == 1){
-			status = MAN_RED;
+		if (isButton0Pressed() == 1){
+			status1 = MAN_RED;
 			setTimer1(10000);
 		}
 		break;

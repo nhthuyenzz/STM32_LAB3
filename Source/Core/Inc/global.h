@@ -13,15 +13,20 @@
 #include "light_traffic.h"
 #include "main.h"
 
-#define INIT 		1
-#define AUTO_RED 	2
-#define AUTO_GREEN 	3
-#define AUTO_YELLOW 4
+#define INIT 			1
+#define AUTO_RED_1 		2
+#define AUTO_GREEN_1 	3
+#define AUTO_YELLOW_1	4
+
+#define AUTO_RED_2 		5
+#define AUTO_GREEN_2 	6
+#define AUTO_YELLOW_2	7
 
 #define MAN_RED 	12
 #define MAN_YELLOW	13
 #define MAN_GREEN	14
 
-extern int status;
+extern int status1;
+extern int status2;
 
 #endif /* INC_GLOBAL_H_ */

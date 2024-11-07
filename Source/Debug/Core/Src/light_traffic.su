@@ -1,3 +1,13 @@
-light_traffic.c:10:6:setRed	8	static
-light_traffic.c:16:6:setGreen	8	static
-light_traffic.c:22:6:setYellow	8	static
+light_traffic.c:15:6:setInit	8	static
+light_traffic.c:25:6:setRed	8	static
+light_traffic.c:31:6:setGreen	8	static
+light_traffic.c:37:6:setYellow	8	static
+light_traffic.c:43:6:setRed_1	8	static
+light_traffic.c:49:6:setGreen_1	8	static
+light_traffic.c:55:6:setYellow_1	8	static
+light_traffic.c:62:6:setRed_2	8	static
+light_traffic.c:68:6:setGreen_2	8	static
+light_traffic.c:74:6:setYellow_2	8	static
+light_traffic.c:79:6:display7SEG	16	static
+light_traffic.c:176:6:update7SEG	16	static
+light_traffic.c:213:6:updateClockBuffer	4	static

@@ -8,51 +8,92 @@
 
 #include "global.h"
 
-void fsm_automatic_run(){
-	switch(status){
+void fsm_automatic_run1(){
+	switch(status1){
 	case INIT:
 		//TODO
-		HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
+		setInit();
 
-		status = AUTO_RED;
+		status1 = AUTO_RED_1;
 		setTimer1(5000);
 		break;
 
-	case AUTO_RED:
-		setRed();
-
+	case AUTO_RED_1:
+		setRed_1();
 		if (timer1_flag == 1){
-			status = AUTO_GREEN;
+			status1 = AUTO_GREEN_1;
 			setTimer1(3000);
 		}
 
-		if (isButton1Pressed() == 1){
-			status = MAN_RED;
-			setTimer1(10000);
-		}
+//		if (isButton0Pressed() == 1){
+//			status1 = MAN_RED;
+//			setTimer1(10000);
+//		}
 		break;
 
-	case AUTO_GREEN:
-		setGreen();
+	case AUTO_GREEN_1:
+		setGreen_1();
 		if (timer1_flag == 1){
-			status = AUTO_YELLOW;
+			status1 = AUTO_YELLOW_1;
 			setTimer1(2000);
 		}
 
 		break;
 
 
-	case AUTO_YELLOW:
-		setYellow();
+	case AUTO_YELLOW_1:
+		setYellow_1();
 
 		if (timer1_flag == 1){
-			status = AUTO_RED;
+			status1 = AUTO_RED_1;
 			setTimer1(5000);
 		}
 		break;
 
+	default:
+		break;
+	}
+}
+
+
+void fsm_automatic_run2(){
+	switch (status2){
+	case INIT:
+		setInit();
+		status2 = AUTO_GREEN_2;
+		setTimer2(3000);
+		break;
+	case AUTO_RED_2:
+		setRed_2();
+		if (timer2_flag == 1){
+			status2 = AUTO_GREEN_2;
+			setTimer2(3000);
+		}
+
+//		if (isButton0Pressed() == 1){
+//			status2 = MAN_RED;
+//			setTimer2(10000);
+//		}
+		break;
+
+	case AUTO_GREEN_2:
+		setGreen_2();
+		if (timer2_flag == 1){
+			status2 = AUTO_YELLOW_2;
+			setTimer2(2000);
+		}
+
+		break;
+
+
+	case AUTO_YELLOW_2:
+		setYellow_2();
+
+		if (timer2_flag == 1){
+			status2 = AUTO_RED_2;
+			setTimer2(5000);
+		}
+		break;
 	default:
 		break;
 	}

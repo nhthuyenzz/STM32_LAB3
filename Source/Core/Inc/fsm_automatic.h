@@ -10,7 +10,8 @@
 
 #include "global.h"
 
-void fsm_automatic_run();
+void fsm_automatic_run1();
+void fsm_automatic_run2();
 //extern const int MAX_LED;
 //extern int hour, minute, second;
 //int index_led;
