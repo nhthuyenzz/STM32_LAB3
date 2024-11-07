@@ -8,6 +8,11 @@
 #ifndef INC_LIGHT_TRAFFIC_H_
 #define INC_LIGHT_TRAFFIC_H_
 
+#include "main.h"
+
+void setRed();
+void setGreen();
+void setYellow();
 
 
 #endif /* INC_LIGHT_TRAFFIC_H_ */

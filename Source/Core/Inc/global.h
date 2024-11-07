@@ -10,6 +10,7 @@
 
 #include "software_timer.h"
 #include "button.h"
+#include "light_traffic.h"
 #include "main.h"
 
 #define INIT 		1

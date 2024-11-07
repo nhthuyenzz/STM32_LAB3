@@ -1,0 +1,3 @@
+light_traffic.c:10:6:setRed	8	static
+light_traffic.c:16:6:setGreen	8	static
+light_traffic.c:22:6:setYellow	8	static
