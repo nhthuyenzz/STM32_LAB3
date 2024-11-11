@@ -8,10 +8,9 @@
 #include "light_traffic.h"
 
 int led_buffer[4] = {1, 2, 3, 4};
-int hour = 15, minute = 59, second = 0;
-int second1 = 0, second2 = 0;
+int second11, second12, second21, second22;
 int index_led = 0;
-
+int count1 = 50;
 void setInit(){
 	HAL_GPIO_WritePin(LED_1_RED_GPIO_Port, LED_1_RED_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(LED_1_GREEN_GPIO_Port, LED_1_GREEN_Pin, GPIO_PIN_RESET);
@@ -28,17 +27,17 @@ void setRed(){
 	HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
 }
 
-void setGreen(){
-	HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);;
-	HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
-}
-
-void setYellow(){
-	HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
-}
+//void setGreen(){
+//	HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);;
+//	HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
+//	HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
+//}
+//
+//void setYellow(){
+//	HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
+//	HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
+//	HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
+//}
 
 void setRed_1(){
 	HAL_GPIO_WritePin(LED_1_RED_GPIO_Port, LED_1_RED_Pin, GPIO_PIN_SET);
@@ -76,6 +75,39 @@ void setYellow_2(){
 	HAL_GPIO_WritePin(LED_2_GREEN_GPIO_Port, LED_2_GREEN_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(LED_2_YELLOW_GPIO_Port, LED_2_YELLOW_Pin, GPIO_PIN_SET);
 }
+
+void setToggleRed(){//2HZ
+    HAL_GPIO_WritePin(LED_1_GREEN_GPIO_Port, LED_1_GREEN_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(LED_1_YELLOW_GPIO_Port, LED_1_YELLOW_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(LED_2_GREEN_GPIO_Port, LED_2_GREEN_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(LED_2_YELLOW_GPIO_Port, LED_2_YELLOW_Pin, GPIO_PIN_RESET);
+
+    // Toggle only the red LEDs on both sets
+    HAL_GPIO_TogglePin(LED_1_RED_GPIO_Port, LED_1_RED_Pin);
+    HAL_GPIO_TogglePin(LED_2_RED_GPIO_Port, LED_2_RED_Pin);
+
+}
+
+void setToggleGreen(){
+	HAL_GPIO_WritePin(LED_1_RED_GPIO_Port, LED_1_RED_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_TogglePin(LED_1_GREEN_GPIO_Port, LED_1_GREEN_Pin);
+	HAL_GPIO_WritePin(LED_1_YELLOW_GPIO_Port, LED_1_YELLOW_Pin, GPIO_PIN_RESET);
+
+	HAL_GPIO_WritePin(LED_2_RED_GPIO_Port, LED_2_RED_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_TogglePin(LED_2_GREEN_GPIO_Port, LED_2_GREEN_Pin);
+	HAL_GPIO_WritePin(LED_2_YELLOW_GPIO_Port, LED_2_YELLOW_Pin, GPIO_PIN_RESET);
+}
+
+void setToggleYellow(){
+	HAL_GPIO_WritePin(LED_1_RED_GPIO_Port, LED_1_RED_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(LED_1_GREEN_GPIO_Port, LED_1_GREEN_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_TogglePin(LED_1_YELLOW_GPIO_Port, LED_1_YELLOW_Pin);
+
+	HAL_GPIO_WritePin(LED_2_RED_GPIO_Port, LED_2_RED_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(LED_2_GREEN_GPIO_Port, LED_2_GREEN_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_TogglePin(LED_2_YELLOW_GPIO_Port, LED_2_YELLOW_Pin);
+}
+
 void display7SEG(int num){
 	switch(num){
 	case 0:
@@ -181,28 +213,28 @@ void update7SEG (int index){
 		  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
 		  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
 		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
-		display7SEG(led_buffer[index]);
+		  display7SEG(led_buffer[index]);
 		break;
 	case 1:
 		  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
 		  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
 		  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
 		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
-		display7SEG(led_buffer[index]);
+		  display7SEG(led_buffer[index]);
 		break;
 	case 2:
 		  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
 		  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
 		  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
 		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
-		 display7SEG(led_buffer[index]);
+		  display7SEG(led_buffer[index]);
 		break;
 	case 3:
 		  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
 		  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
 		  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
 		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
-		display7SEG(led_buffer[index]);
+		  display7SEG(led_buffer[index]);
 		break;
 	default:
 		break;
@@ -211,17 +243,17 @@ void update7SEG (int index){
 
 
 void updateClockBuffer(){
-	  second1--;
-	  if (second1 <= 0){
-		  second1 = 9;
-		  second2--;
+	  second12--;
+	  if (second12 <= 0){
+		  second12 = 9;
+		  second11--;
 	  }
-	  if (second2 <= 0){
-		  second2 = 6;
+	  if (second11 <= 0){
+		  second11 = 9;
 	  }
-	  led_buffer[0] = second1;
-	  led_buffer[1] = second2;
-//	  led_buffer[2] = minute/10;
-//	  led_buffer[3] = minute%10;
+	  led_buffer[0] = second11;
+	  led_buffer[1] = second12;
+	  led_buffer[2] = second21;
+	  led_buffer[3] = second22;
 
 }

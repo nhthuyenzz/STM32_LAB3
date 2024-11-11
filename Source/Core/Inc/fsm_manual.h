@@ -12,5 +12,5 @@
 #include "global.h"
 
 void fsm_manual_run();
-
+extern int counter;
 #endif /* INC_FSM_MANUAL_H_ */

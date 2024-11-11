@@ -14,19 +14,22 @@
 #include "main.h"
 
 #define INIT 			1
-#define AUTO_RED_1 		2
-#define AUTO_GREEN_1 	3
-#define AUTO_YELLOW_1	4
+#define RED_GREEN		2
+#define RED_AMBER		3
+#define GREEN_RED		4
+#define AMBER_RED		5
 
-#define AUTO_RED_2 		5
-#define AUTO_GREEN_2 	6
-#define AUTO_YELLOW_2	7
 
 #define MAN_RED 	12
 #define MAN_YELLOW	13
 #define MAN_GREEN	14
 
-extern int status1;
-extern int status2;
+#define SET_RED			21
+#define SET_AMBER		22
+#define SET_GREEN		23
 
+extern int fsm_status;
+extern int status;
+
+extern int counter;
 #endif /* INC_GLOBAL_H_ */

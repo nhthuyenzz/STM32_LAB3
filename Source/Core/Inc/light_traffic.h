@@ -8,7 +8,7 @@
 #ifndef INC_LIGHT_TRAFFIC_H_
 #define INC_LIGHT_TRAFFIC_H_
 
-#include "main.h"
+#include "global.h"
 
 void setInit();
 
@@ -24,9 +24,17 @@ void setRed();
 void setGreen();
 void setYellow();
 
+void setToggleRed();
+void setToggleGreen();
+void setToggleYellow();
+
 void display7SEG(int num);
 void update7SEG(int num);
 void updateClockBuffer();
 
+extern const int MAX_LED;
 extern int index_led;
+extern int second11, second12, second21, second22;
+
+extern int count1;
 #endif /* INC_LIGHT_TRAFFIC_H_ */
