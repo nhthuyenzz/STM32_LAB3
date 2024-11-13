@@ -28,8 +28,8 @@ void fsm_setting_run(){
 		case SET_GREEN:
 			diff = green_time_temp - green_time;
 			green_time = green_time_temp;
-			green_time += diff;
-			green_time_temp += diff;
+			red_time += diff;
+			red_time_temp += diff;
 			status = MAN_GREEN;
 			break;
 		default:

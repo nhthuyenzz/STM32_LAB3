@@ -11,3 +11,4 @@
  int index_led = 0;
  int red_time, green_time, amber_time;
  int red_time_temp, green_time_temp, amber_time_temp;
+ int mode = 1;

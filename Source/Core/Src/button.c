@@ -81,17 +81,17 @@ void getKey1Input(){
 	Key1Reg1 = Key1Reg2;
 	Key1Reg2 = HAL_GPIO_ReadPin(Button1_GPIO_Port, Button1_Pin);
 	if ((Key1Reg0 == Key1Reg1) && (Key1Reg1 == Key1Reg2)){
-		if (Key1Reg3 != Key1Reg2){
+		if (Key1Reg3 != Key1Reg2){//nhan tha
 			Key1Reg3 = Key1Reg2;
 			if (Key1Reg2 == PRESSED_STATE){
 				//TODO
 				subKey1Process();
 				TimerForKey1Press = 200;
 			}
-		} else{
+		} else{//nhan giu
 			TimerForKey1Press--;
 			if (TimerForKey1Press == 0){
-				Key3Reg3 = NORMAL_STATE;
+				Key1Reg3 = NORMAL_STATE;
 			}
 		}
 	}

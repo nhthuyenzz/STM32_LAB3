@@ -8,6 +8,8 @@
 
 #include "global.h"
 
+
+
 void fsm_automatic_run(){
 	switch(status){
 	case INIT:

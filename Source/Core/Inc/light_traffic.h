@@ -36,6 +36,8 @@ void updateClockBuffer();
 void updateTime();
 void updateClock();
 
+void dispMode();
+
 extern const int MAX_LED;
 extern int index_led;
 extern int second11, second12, second21, second22;

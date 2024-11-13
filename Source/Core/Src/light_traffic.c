@@ -125,9 +125,9 @@ static int get7SEG1Value() {
 		case RED_AMBER:
 			return red_time_temp;
 		case GREEN_RED:
-			return amber_time_temp;
-		case AMBER_RED:
 			return green_time_temp;
+		case AMBER_RED:
+			return amber_time_temp;
 		case MAN_RED:
 			return red_time_temp;
 		case MAN_GREEN:
@@ -258,6 +258,65 @@ void display7SEG(int num){
 	}
 }
 
+
+int currentMode(){
+	if(status == RED_AMBER || status == RED_GREEN || status == GREEN_RED || status == AMBER_RED){
+		mode = 1;
+	} else if (status == MAN_RED){
+		mode = 2;
+	} else if (status == MAN_AMBER){
+		mode = 3;
+	} else {
+		mode = 4;
+	}
+
+	return mode;
+}
+
+void dispMode(int mode){
+	currentMode();
+	switch (mode){
+	case 1:
+			HAL_GPIO_WritePin(SEG_00_GPIO_Port, SEG_00_Pin, SET);
+			HAL_GPIO_WritePin(SEG_01_GPIO_Port, SEG_01_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_02_GPIO_Port, SEG_02_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_03_GPIO_Port, SEG_03_Pin, SET);
+			HAL_GPIO_WritePin(SEG_04_GPIO_Port, SEG_04_Pin, SET);
+			HAL_GPIO_WritePin(SEG_05_GPIO_Port, SEG_05_Pin, SET);
+			HAL_GPIO_WritePin(SEG_06_GPIO_Port, SEG_06_Pin, SET);
+			break;
+		case 2:
+			HAL_GPIO_WritePin(SEG_00_GPIO_Port, SEG_00_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_01_GPIO_Port, SEG_01_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_02_GPIO_Port, SEG_02_Pin, SET);
+			HAL_GPIO_WritePin(SEG_03_GPIO_Port, SEG_03_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_04_GPIO_Port, SEG_04_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_05_GPIO_Port, SEG_05_Pin, SET);
+			HAL_GPIO_WritePin(SEG_06_GPIO_Port, SEG_06_Pin, RESET);
+				break;
+		case 3:
+			HAL_GPIO_WritePin(SEG_00_GPIO_Port, SEG_00_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_01_GPIO_Port, SEG_01_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_02_GPIO_Port, SEG_02_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_03_GPIO_Port, SEG_03_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_04_GPIO_Port, SEG_04_Pin, SET);
+			HAL_GPIO_WritePin(SEG_05_GPIO_Port, SEG_05_Pin, SET);
+			HAL_GPIO_WritePin(SEG_06_GPIO_Port, SEG_06_Pin, RESET);
+				break;
+		case 4:
+			HAL_GPIO_WritePin(SEG_00_GPIO_Port, SEG_00_Pin, SET);
+			HAL_GPIO_WritePin(SEG_01_GPIO_Port, SEG_01_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_02_GPIO_Port, SEG_02_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_03_GPIO_Port, SEG_03_Pin, SET);
+			HAL_GPIO_WritePin(SEG_04_GPIO_Port, SEG_04_Pin, SET);
+			HAL_GPIO_WritePin(SEG_05_GPIO_Port, SEG_05_Pin, RESET);
+			HAL_GPIO_WritePin(SEG_06_GPIO_Port, SEG_06_Pin, RESET);
+				break;
+		default:
+			break;
+
+	}
+}
 void update7SEG (int index){
 	index = index%4;
 	switch (index){
@@ -289,56 +348,24 @@ void update7SEG (int index){
 		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
 		  display7SEG(get7SEG2Value()%10);
 		break;
+	case 4:
+		  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
+		  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+		  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
 	default:
 		break;
 	}
 }
 
 
-
-void updateClockBuffer(){
-
-	  second12--;
-	  second22--;
-
-	  if (second12 < 0){
-		  second12 = 9;
-		  second11--;
-	  }
-	  if (second11 <= 0){
-		  second11 = red_time/10;
-	  }
-
-	  if(second22 < 0){
-		  second22 = 9;
-		  second21--;
-	  }
-
-	  if (second21 <= 0){
-		  second21 = green_time/10;
-	  }
-	  led_buffer[0] = second11;
-	  led_buffer[1] = second12;
-	  led_buffer[2] = second21;
-	  led_buffer[3] = second22;
-}
-//
-//void updateTime(){
-//	if(status == RED)
-//}
-
-void updateClock(){
+void updateClock() {
 	if(timer2_flag == 1){
 		if (index_led > 3){
 			index_led = 0;
 		}
 		update7SEG(index_led++);
 		setTimer2(250);
-	}
-
-	if(timer3_flag == 1){
-		updateClockBuffer();
-		setTimer3(1000);
 	}
 }
 

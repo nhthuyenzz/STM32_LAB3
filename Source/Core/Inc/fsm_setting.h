@@ -10,8 +10,6 @@
 
 #include "global.h"
 
-static void setTimeValue();
-static void increasetime_tempValue();
 void fsm_setting_run();
 
 #endif /* INC_FSM_SETTING_H_ */

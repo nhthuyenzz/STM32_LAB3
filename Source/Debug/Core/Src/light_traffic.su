@@ -13,6 +13,7 @@ light_traffic.c:111:6:setToggleYellow	8	static
 light_traffic.c:121:12:get7SEG1Value	4	static
 light_traffic.c:142:12:get7SEG2Value	4	static
 light_traffic.c:164:6:display7SEG	16	static
-light_traffic.c:261:6:update7SEG	16	static
-light_traffic.c:299:6:updateClockBuffer	4	static
-light_traffic.c:330:6:updateClock	8	static
+light_traffic.c:262:5:currentMode	4	static
+light_traffic.c:276:6:dispMode	16	static
+light_traffic.c:320:6:update7SEG	16	static
+light_traffic.c:362:6:updateClock	8	static
