@@ -97,41 +97,22 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  status = INIT;
+  setTimer0(100);
   setTimer1(100);
   setTimer2(100);
   setTimer3(100);
   setTimerLed(100);
-  index_led = 0;
-  counter = 0;
+
   while (1)
   {
-//	  if (isButton1Pressed() == 1){
-//		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-//	  }
-//
-//	  if (isButton2Pressed() == 1){
-//		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
-//	  }
-//
-//	  if (isButton3Pressed() == 1){
-//		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
-//	  }
-	    fsm_automatic_run();
-	    fsm_manual_run();
-
-	    if(timer2_flag == 1){
-	    	if (index_led > 3){
-	    		index_led = 0;
-	    	}
-	    	update7SEG(index_led++);
-	    	setTimer2(250);
-	    }
-
-	    if(timer3_flag == 1){
-	    	updateClockBuffer();
-	    	setTimer3(1000);
-	    }
+	  if (timer0_flag == 1){
+		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+		  setTimer0(1000);
+	  }
+		fsm_automatic_run();
+		fsm_manual_run();
+		fsm_setting_run();
+		updateClock();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

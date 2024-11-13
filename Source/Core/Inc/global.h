@@ -19,17 +19,28 @@
 #define GREEN_RED		4
 #define AMBER_RED		5
 
+#define RED_TIME 10
+#define GREEN_TIME 7
+#define AMBER_TIME 3
 
 #define MAN_RED 	12
-#define MAN_YELLOW	13
+#define MAN_AMBER	13
 #define MAN_GREEN	14
 
 #define SET_RED			21
 #define SET_AMBER		22
 #define SET_GREEN		23
 
+extern uint8_t led_buffer[4];
+
 extern int fsm_status;
 extern int status;
 
-extern int counter;
+extern int red_time, green_time, amber_time;
+extern int red_time_temp, green_time_temp, amber_time_temp;
+
+extern int index_led;
+extern int donvi1;
+extern int chuc1;
+
 #endif /* INC_GLOBAL_H_ */

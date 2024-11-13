@@ -10,7 +10,8 @@
 
 #include "global.h"
 
-void setInit();
+void setLightInit();
+void setTimeInit();
 
 void setRed_1();
 void setGreen_1();
@@ -31,6 +32,9 @@ void setToggleYellow();
 void display7SEG(int num);
 void update7SEG(int num);
 void updateClockBuffer();
+
+void updateTime();
+void updateClock();
 
 extern const int MAX_LED;
 extern int index_led;
