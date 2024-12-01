@@ -110,7 +110,7 @@ int main(void)
 		  setTimer0(1000);
 	  }
 
-	  	 dispMode(mode);
+	  	dispMode(mode);
 		fsm_automatic_run();
 		fsm_manual_run();
 		fsm_setting_run();

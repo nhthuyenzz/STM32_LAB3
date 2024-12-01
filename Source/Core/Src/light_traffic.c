@@ -7,9 +7,6 @@
 
 #include "light_traffic.h"
 
-
-int second11, second12, second21, second22;
-int count1 = 50;
 void setLightInit(){
 	HAL_GPIO_WritePin(LED_1_RED_GPIO_Port, LED_1_RED_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(LED_1_GREEN_GPIO_Port, LED_1_GREEN_Pin, GPIO_PIN_RESET);
@@ -21,14 +18,9 @@ void setLightInit(){
 }
 
 void setTimeInit(){
-	red_time = RED_TIME;
-	green_time = GREEN_TIME;
-	amber_time = AMBER_TIME;
 	red_time_temp = red_time;
 	green_time_temp = green_time;
 	amber_time_temp = amber_time;
-	second11 = red_time/10;
-	second12 = red_time%10;
 }
 
 void setRed(){
@@ -347,13 +339,6 @@ void update7SEG (int index){
 		  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
 		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
 		  display7SEG(get7SEG2Value()%10);
-		break;
-	case 4:
-		  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
-		  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
-		  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
-		  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
-	default:
 		break;
 	}
 }
